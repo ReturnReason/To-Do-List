@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="47" height="47" viewBox="0 0 47 47">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="그룹_1" data-name="그룹 1" transform="translate(-1220.837 -801.837)">
+    <rect id="사각형_10" data-name="사각형 10" class="cls-1" width="47" height="9" rx="4.5" transform="translate(1220.837 820.837)"/>
+    <rect id="사각형_11" data-name="사각형 11" class="cls-1" width="47" height="9" rx="4.5" transform="translate(1248.837 801.837) rotate(90)"/>
+  </g>
+</svg>

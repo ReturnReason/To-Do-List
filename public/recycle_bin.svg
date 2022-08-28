@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="43" viewBox="0 0 32 43">
+  <defs>
+    <style>
+      .cls-1, .cls-2, .cls-3, .cls-5 {
+        fill: none;
+      }
+
+      .cls-1, .cls-2, .cls-3 {
+        stroke: #94a7ff;
+        stroke-linejoin: round;
+      }
+
+      .cls-1 {
+        stroke-linecap: round;
+      }
+
+      .cls-1, .cls-3 {
+        stroke-width: 3px;
+      }
+
+      .cls-2 {
+        stroke-width: 2px;
+      }
+
+      .cls-4 {
+        stroke: none;
+      }
+    </style>
+  </defs>
+  <g id="그룹_3" data-name="그룹 3" transform="translate(1.5 1.866)">
+    <rect id="사각형_12" data-name="사각형 12" class="cls-1" width="29" height="24" rx="5" transform="translate(0 15.634)"/>
+    <g id="사각형_15" data-name="사각형 15" class="cls-2" transform="translate(7 19.634)">
+      <rect class="cls-4" width="3" height="14" rx="1.5"/>
+      <rect class="cls-5" x="1" y="1" width="1" height="12" rx="0.5"/>
+    </g>
+    <path id="합치기_1" data-name="합치기 1" class="cls-3" d="M3.4,11a3.4,3.4,0,0,1,0-6.809H8.347A4.978,4.978,0,0,1,13.262,0h3.167a4.977,4.977,0,0,1,4.914,4.19H25.6A3.4,3.4,0,1,1,25.6,11Z" transform="translate(0 -0.366)"/>
+    <g id="사각형_18" data-name="사각형 18" class="cls-2" transform="translate(13 19.634)">
+      <rect class="cls-4" width="3" height="11" rx="1.5"/>
+      <rect class="cls-5" x="1" y="1" width="1" height="9" rx="0.5"/>
+    </g>
+    <g id="사각형_19" data-name="사각형 19" class="cls-2" transform="translate(19 19.634)">
+      <rect class="cls-4" width="3" height="16" rx="1.5"/>
+      <rect class="cls-5" x="1" y="1" width="1" height="14" rx="0.5"/>
+    </g>
+  </g>
+</svg>

@@ -1,11 +1,17 @@
+import React, { useState, useEffect, useRef } from 'react';
 import './App.css';
-import ToDoList from './ToDoList';
+import '../components/List.css';
+import Main from './Main';
+import Create from '../pages/Create';
 
 function App() {
+  const [addBtnClick, setAddBtnClick] = useState(false);
+
   return (
-    <div className="App">
-      <ToDoList />
-    </div>
+    <>
+      <Main />
+      {/* <Create /> */}
+    </>
   );
 }
 
