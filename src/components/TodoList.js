@@ -54,14 +54,20 @@ const Title = styled.h2`
   font-weight: normal;
 `;
 
-const TodoList = () => {
+const TodoList = ({ todos }) => {
   return (
     <>
       <TodoLists>
-        <MyTodoList>
-          <Title>오늘의 할일</Title>
-          <RecycleIcon src="recycle_bin.svg"></RecycleIcon>
-        </MyTodoList>
+        {Array(todos.length)
+          .fill()
+          .map((todo, i) => {
+            return (
+              <MyTodoList key={`${i}번째 to do 아이템`}>
+                <Title>{todos[i].task}</Title>
+                <RecycleIcon src="recycle_bin.svg"></RecycleIcon>
+              </MyTodoList>
+            );
+          })}
       </TodoLists>
     </>
   );

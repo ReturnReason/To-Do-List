@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import styled, { css } from 'styled-components';
+import { dispatch, CREATE_TODO } from '../components/App';
 
 const TodoCreateContainer = styled.div`
   display: flex;
@@ -72,28 +73,49 @@ const CancelButton = styled(Button)`
   background: #fff;
 `;
 
-const CreateForm = () => {
+const CreateForm = ({ dispatch, getAddBtnClick }) => {
   const [userInput, setUserInput] = useState('');
+  const [userMemoInput, setUserMemoInput] = useState('');
+
   const writeTask = (e) => {
-    setUserInput(e.value);
+    setUserInput(e.target.value);
+  };
+
+  const writeMemo = (e) => {
+    setUserMemoInput(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: CREATE_TODO,
+      todo: {
+        task: userInput,
+        memo: userMemoInput,
+      },
+    });
+
+    setUserInput('');
+    setUserMemoInput('');
+    getAddBtnClick();
   };
 
   return (
     <>
       <TodoCreateContainer>
-        <form method="POST">
+        <form method="" onSubmit={onSubmit}>
           <h2>TASK</h2>
           <Input placeholder="할 일을 입력하세요." className="input" name="title" value={userInput} onChange={writeTask} />
           <h2>MEMO</h2>
-          <InputMemo placeholder="메모를 입력하세요." className="input memo" name="memo" value={userInput} onChange={writeTask} />
+          <InputMemo placeholder="메모를 입력하세요." className="input memo" name="memo" value={userMemoInput} onChange={writeMemo} />
+          <ButtonContainer>
+            <Button add>ADD</Button>
+            <CancelButton>CANCLE</CancelButton>
+          </ButtonContainer>
         </form>
-        <ButtonContainer>
-          <Button add>ADD</Button>
-          <CancelButton>CANCLE</CancelButton>
-        </ButtonContainer>
       </TodoCreateContainer>
     </>
   );
 };
 
-export default CreateForm;
+export default memo(CreateForm);

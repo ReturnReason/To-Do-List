@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useReducer } from 'react';
 import TodoMain from './TodoMain';
 import TodoList from './TodoList';
 import { createGlobalStyle } from 'styled-components';
@@ -37,18 +37,56 @@ const GlobalStyle = createGlobalStyle`
 
 `;
 
+export const CREATE_TODO = 'CREATE_TODO';
+
+const reducer = (state, action) => {
+  console.log(state);
+
+  switch (action.type) {
+    case CREATE_TODO:
+      return state.concat(action.todo);
+
+    default:
+      return;
+  }
+};
+
+const initialState = [
+  {
+    id: 1,
+    task: '밥 먹기',
+    memo: '메모',
+  },
+  {
+    id: 2,
+    task: '게임하기',
+    memo: '메모',
+  },
+  {
+    id: 3,
+    task: '포스트 발행하기',
+    memo: '메모',
+  },
+];
+
+console.log(initialState);
+
 function App() {
   const [addBtnClick, setAddBtnClick] = useState(false);
   const getAddBtnClick = useCallback(() => {
     setAddBtnClick(!addBtnClick);
   }, [addBtnClick]);
 
+  const id = useRef(4); // 투두 아이디 번호
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
     <>
       <GlobalStyle />
       <TodoTemplate>
         <TodoTopMenu />
-        {addBtnClick ? <CreateForm /> : <TodoMain getAddBtnClick={getAddBtnClick} />}
+        {addBtnClick ? <CreateForm getAddBtnClick={getAddBtnClick} id={id} dispatch={dispatch} /> : <TodoMain todos={state} getAddBtnClick={getAddBtnClick} />}
         <AddButton getAddBtnClick={getAddBtnClick} addBtnClick={addBtnClick} />
       </TodoTemplate>
     </>

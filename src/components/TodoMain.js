@@ -12,12 +12,12 @@ const ListContainer = styled.div`
 `;
 
 /* 메인 페이지 */
-const TodoMain = () => {
+const TodoMain = ({ todos }) => {
   return (
     <>
       <ListContainer>
         {/* +버튼 누르기 전에 보일 화면 */}
-        <TodoList />
+        <TodoList todos={todos} />
       </ListContainer>
     </>
   );
