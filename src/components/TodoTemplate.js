@@ -1,6 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
 
+function TodoTemplate({ children }) {
+  return <TodoTemplateContainer>{children}</TodoTemplateContainer>;
+}
+
+export default TodoTemplate;
+
 const TodoTemplateContainer = styled.div`
   background: #fff;
   width: 700px;
@@ -26,9 +32,3 @@ const TodoTemplateContainer = styled.div`
     border-radius: 20px;
   }
 `;
-
-function TodoTemplate({ children }) {
-  return <TodoTemplateContainer>{children}</TodoTemplateContainer>;
-}
-
-export default TodoTemplate;

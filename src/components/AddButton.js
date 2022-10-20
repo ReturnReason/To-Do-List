@@ -1,6 +1,20 @@
 import styled, { css } from 'styled-components';
 import plusIcon from '../assets/plus.svg';
 
+const AddButton = ({ addBtnClick, getAddBtnClick }) => {
+  const onClick = (e) => {
+    getAddBtnClick();
+  };
+
+  return (
+    <AddBtn onClick={onClick} addBtnClick={addBtnClick}>
+      <PlusIcon addBtnClick={addBtnClick} className="plus-img"></PlusIcon>
+    </AddBtn>
+  );
+};
+
+export default AddButton;
+
 const AddBtn = styled.div`
   width: 70px;
   height: 70px;
@@ -47,17 +61,3 @@ const PlusIcon = styled.div`
   box-sizing: content-box;
   transition: all 0.5s;
 `;
-
-const AddButton = ({ addBtnClick, getAddBtnClick }) => {
-  const onClick = (e) => {
-    getAddBtnClick();
-  };
-
-  return (
-    <AddBtn onClick={onClick} addBtnClick={addBtnClick}>
-      <PlusIcon addBtnClick={addBtnClick} className="plus-img"></PlusIcon>
-    </AddBtn>
-  );
-};
-
-export default AddButton;

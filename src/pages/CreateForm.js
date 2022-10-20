@@ -105,9 +105,23 @@ const CreateForm = ({ dispatch, getAddBtnClick }) => {
       <TodoCreateContainer>
         <form method="" onSubmit={onSubmit}>
           <h2>TASK</h2>
-          <Input placeholder="할 일을 입력하세요." className="input" name="title" value={userInput} onChange={writeTask} />
+          <Input
+            required
+            placeholder="할 일을 입력하세요."
+            className="input"
+            name="title"
+            value={userInput}
+            onChange={writeTask}
+          />
           <h2>MEMO</h2>
-          <InputMemo placeholder="메모를 입력하세요." className="input memo" name="memo" value={userMemoInput} onChange={writeMemo} />
+          <InputMemo
+            required
+            placeholder="메모를 입력하세요."
+            className="input memo"
+            name="memo"
+            value={userMemoInput}
+            onChange={writeMemo}
+          />
           <ButtonContainer>
             <Button add>ADD</Button>
             <CancelButton>CANCLE</CancelButton>

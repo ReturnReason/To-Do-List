@@ -1,5 +1,19 @@
 import React, { memo } from 'react';
 import styled from 'styled-components';
+
+const TodoTopMenu = () => {
+  return (
+    <>
+      <MenuContainer>
+        <h2 className="title">To Do List</h2>
+        <MenuIcon src="menu.svg"></MenuIcon>
+      </MenuContainer>
+    </>
+  );
+};
+
+export default memo(TodoTopMenu);
+
 const MenuContainer = styled.div`
   width: 100%;
   height: 100px;
@@ -26,16 +40,3 @@ const MenuIcon = styled.img`
   top: 50px;
   cursor: pointer;
 `;
-
-const TodoTopMenu = () => {
-  return (
-    <>
-      <MenuContainer>
-        <h2 className="title">To Do List</h2>
-        <MenuIcon src="menu.svg"></MenuIcon>
-      </MenuContainer>
-    </>
-  );
-};
-
-export default memo(TodoTopMenu);
