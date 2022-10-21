@@ -14,64 +14,69 @@ import TodoTopMenu from './TodoTopMenu';
 import AddButton from './AddButton';
 
 export const CREATE_TODO = 'CREATE_TODO';
+export const CLOSE_CREATE_TODO = 'CLOSE_CREATE_TODO';
+export const CLICK_ADD_BUTTON = 'CLICK_ADD_BUTTON';
 
 const reducer = (state, action) => {
-  console.log(state);
-
   switch (action.type) {
     case CREATE_TODO:
-      return state.concat(action.todo);
-
+      const newTodos = [...state.data, action.todo];
+      return {
+        ...state,
+        newTodos,
+      };
+    case CLOSE_CREATE_TODO:
+      return {
+        ...state,
+        showCreateTodo: false,
+      };
+    case CLICK_ADD_BUTTON:
+      return {
+        ...state,
+        showCreateTodo: true,
+      };
     default:
       return;
   }
 };
 
-const initialState = [
-  {
-    id: 1,
-    task: '밥 먹기',
-    memo: '메모',
-  },
-  {
-    id: 2,
-    task: '게임하기',
-    memo: '메모',
-  },
-  {
-    id: 3,
-    task: '포스트 발행하기',
-    memo: '메모',
-  },
-];
-
-console.log(initialState);
+const initialState = {
+  showCreateTodo: true,
+  data: [
+    {
+      id: 1,
+      task: '밥 먹기',
+      memo: '메모',
+    },
+    {
+      id: 2,
+      task: '게임하기',
+      memo: '메모',
+    },
+    {
+      id: 3,
+      task: '포스트 발행하기',
+      memo: '메모',
+    },
+  ],
+};
 
 function App() {
-  const [addBtnClick, setAddBtnClick] = useState(false);
-  const getAddBtnClick = useCallback(() => {
-    setAddBtnClick(!addBtnClick);
-  }, [addBtnClick]);
-
   const id = useRef(4); // 투두 아이디 번호
-
   const [state, dispatch] = useReducer(reducer, initialState);
+  const { showCreateTodo, data } = state;
 
   return (
     <>
       <GlobalStyle />
       <TodoTemplate>
         <TodoTopMenu />
-        {addBtnClick ? (
-          <CreateForm
-            getAddBtnClick={getAddBtnClick}
-            id={id}
-            dispatch={dispatch}
-          />
+        {showCreateTodo ? (
+          <CreateForm id={id} dispatch={dispatch} />
         ) : (
-          <TodoMain todos={state} getAddBtnClick={getAddBtnClick} />
+          <TodoMain todos={data} />
         )}
-        <AddButton getAddBtnClick={getAddBtnClick} addBtnClick={addBtnClick} />
+        <AddButton dispatch={dispatch} showCreateTodo={showCreateTodo} />
       </TodoTemplate>
     </>
   );

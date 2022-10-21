@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+/* +버튼 누르기 전에 보일 화면 */
 
 const TodoList = ({ todos }) => {
   return (

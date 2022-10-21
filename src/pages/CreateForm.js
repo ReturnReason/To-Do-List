@@ -1,6 +1,89 @@
 import React, { useState, memo } from 'react';
 import styled, { css } from 'styled-components';
-import { dispatch, CREATE_TODO } from '../components/App';
+import { dispatch, CREATE_TODO, CLOSE_CREATE_TODO } from '../components/App';
+
+const CreateForm = ({ dispatch }) => {
+  const [userInput, setUserInput] = useState('');
+  const [userMemoInput, setUserMemoInput] = useState('');
+
+  const writeTask = (e) => {
+    setUserInput(e.target.value);
+  };
+
+  const writeMemo = (e) => {
+    setUserMemoInput(e.target.value);
+  };
+
+  const onSubmit = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: CREATE_TODO,
+      todo: {
+        task: userInput,
+        memo: userMemoInput,
+      },
+    });
+
+    setUserInput('');
+    setUserMemoInput('');
+  };
+
+  const onClose = () => {
+    dispatch({
+      type: CLOSE_CREATE_TODO,
+    });
+  };
+
+  const addTodo = () => {
+    dispatch({
+      type: CREATE_TODO,
+      todo: {
+        id: 4, //나중에 수정 해야함
+        task: userInput,
+        memo: userMemoInput,
+      },
+    });
+
+    dispatch({
+      type: CLOSE_CREATE_TODO,
+    });
+  };
+
+  return (
+    <>
+      <TodoCreateContainer>
+        <form method="" onSubmit={onSubmit}>
+          <h2>TASK</h2>
+          <Input
+            required
+            placeholder="할 일을 입력하세요."
+            className="input"
+            name="title"
+            value={userInput}
+            onChange={writeTask}
+          />
+          <h2>MEMO</h2>
+          <InputMemo
+            required
+            placeholder="메모를 입력하세요."
+            className="input memo"
+            name="memo"
+            value={userMemoInput}
+            onChange={writeMemo}
+          />
+          <ButtonContainer>
+            <Button add onClick={addTodo}>
+              ADD
+            </Button>
+            <CancelButton onClick={onClose}>CANCLE</CancelButton>
+          </ButtonContainer>
+        </form>
+      </TodoCreateContainer>
+    </>
+  );
+};
+
+export default memo(CreateForm);
 
 const TodoCreateContainer = styled.div`
   display: flex;
@@ -72,64 +155,3 @@ const CancelButton = styled(Button)`
   color: #94a8ff;
   background: #fff;
 `;
-
-const CreateForm = ({ dispatch, getAddBtnClick }) => {
-  const [userInput, setUserInput] = useState('');
-  const [userMemoInput, setUserMemoInput] = useState('');
-
-  const writeTask = (e) => {
-    setUserInput(e.target.value);
-  };
-
-  const writeMemo = (e) => {
-    setUserMemoInput(e.target.value);
-  };
-
-  const onSubmit = (e) => {
-    e.preventDefault();
-    dispatch({
-      type: CREATE_TODO,
-      todo: {
-        task: userInput,
-        memo: userMemoInput,
-      },
-    });
-
-    setUserInput('');
-    setUserMemoInput('');
-    getAddBtnClick();
-  };
-
-  return (
-    <>
-      <TodoCreateContainer>
-        <form method="" onSubmit={onSubmit}>
-          <h2>TASK</h2>
-          <Input
-            required
-            placeholder="할 일을 입력하세요."
-            className="input"
-            name="title"
-            value={userInput}
-            onChange={writeTask}
-          />
-          <h2>MEMO</h2>
-          <InputMemo
-            required
-            placeholder="메모를 입력하세요."
-            className="input memo"
-            name="memo"
-            value={userMemoInput}
-            onChange={writeMemo}
-          />
-          <ButtonContainer>
-            <Button add>ADD</Button>
-            <CancelButton>CANCLE</CancelButton>
-          </ButtonContainer>
-        </form>
-      </TodoCreateContainer>
-    </>
-  );
-};
-
-export default memo(CreateForm);

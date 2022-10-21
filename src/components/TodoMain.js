@@ -4,10 +4,10 @@ import styled from 'styled-components';
 
 /* 메인 페이지 */
 const TodoMain = ({ todos }) => {
+  console.log({ todos });
   return (
     <>
       <ListContainer>
-        {/* +버튼 누르기 전에 보일 화면 */}
         <TodoList todos={todos} />
       </ListContainer>
     </>

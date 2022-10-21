@@ -1,14 +1,19 @@
 import styled, { css } from 'styled-components';
 import plusIcon from '../assets/plus.svg';
+import CLICK_ADD_BUTTON from './App';
 
-const AddButton = ({ addBtnClick, getAddBtnClick }) => {
-  const onClick = (e) => {
-    getAddBtnClick();
+const AddButton = ({ showCreateTodo, dispatch }) => {
+  const onClickAddButton = () => {
+    dispatch({
+      type: CLICK_ADD_BUTTON,
+    });
   };
 
+  console.log('test', showCreateTodo);
+
   return (
-    <AddBtn onClick={onClick} addBtnClick={addBtnClick}>
-      <PlusIcon addBtnClick={addBtnClick} className="plus-img"></PlusIcon>
+    <AddBtn onClick={onClickAddButton} showCreateTodo={showCreateTodo}>
+      <PlusIcon className="plus-img"></PlusIcon>
     </AddBtn>
   );
 };
@@ -38,7 +43,7 @@ const AddBtn = styled.div`
   }
 
   ${(props) =>
-    props.addBtnClick &&
+    props.showCreateTodo &&
     css`
       transform: rotate(45deg);
       background: #b29ff3;
