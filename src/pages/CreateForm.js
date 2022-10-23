@@ -1,13 +1,13 @@
 import React, { useState, memo } from 'react';
 import styled, { css } from 'styled-components';
-import { dispatch, CREATE_TODO, CLOSE_CREATE_TODO } from '../components/App';
+import { CREATE_TODO, CLOSE_CREATE_TODO } from '../App';
 
-const CreateForm = ({ dispatch }) => {
-  const [userInput, setUserInput] = useState('');
+const CreateForm = ({ dispatch, setShowCreateTodo, showCreateTodo }) => {
+  const [userTaskInput, setUserTaskInput] = useState('');
   const [userMemoInput, setUserMemoInput] = useState('');
 
   const writeTask = (e) => {
-    setUserInput(e.target.value);
+    setUserTaskInput(e.target.value);
   };
 
   const writeMemo = (e) => {
@@ -19,34 +19,18 @@ const CreateForm = ({ dispatch }) => {
     dispatch({
       type: CREATE_TODO,
       todo: {
-        task: userInput,
+        task: userTaskInput,
         memo: userMemoInput,
       },
     });
 
-    setUserInput('');
+    setUserTaskInput('');
     setUserMemoInput('');
+    onClose();
   };
 
   const onClose = () => {
-    dispatch({
-      type: CLOSE_CREATE_TODO,
-    });
-  };
-
-  const addTodo = () => {
-    dispatch({
-      type: CREATE_TODO,
-      todo: {
-        id: 4, //나중에 수정 해야함
-        task: userInput,
-        memo: userMemoInput,
-      },
-    });
-
-    dispatch({
-      type: CLOSE_CREATE_TODO,
-    });
+    setShowCreateTodo(false);
   };
 
   return (
@@ -59,7 +43,7 @@ const CreateForm = ({ dispatch }) => {
             placeholder="할 일을 입력하세요."
             className="input"
             name="title"
-            value={userInput}
+            value={userTaskInput}
             onChange={writeTask}
           />
           <h2>MEMO</h2>
@@ -72,9 +56,7 @@ const CreateForm = ({ dispatch }) => {
             onChange={writeMemo}
           />
           <ButtonContainer>
-            <Button add onClick={addTodo}>
-              ADD
-            </Button>
+            <AddButton add>ADD</AddButton>
             <CancelButton onClick={onClose}>CANCLE</CancelButton>
           </ButtonContainer>
         </form>
@@ -136,7 +118,7 @@ const ButtonContainer = styled.div`
   gap: 30px;
 `;
 
-const Button = styled.button`
+const AddButton = styled.button`
   border-radius: 20px;
   border: 4px solid #94a8ff65;
   width: 100%;
@@ -151,7 +133,7 @@ const Button = styled.button`
   }
 `;
 
-const CancelButton = styled(Button)`
+const CancelButton = styled(AddButton)`
   color: #94a8ff;
   background: #fff;
 `;

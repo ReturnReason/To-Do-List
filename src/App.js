@@ -1,17 +1,10 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  useReducer,
-} from 'react';
-import TodoMain from './TodoMain';
-import TodoList from './TodoList';
+import React, { useState, useRef, useCallback, useReducer } from 'react';
+import TodoMain from './components/TodoMain';
 import { createGlobalStyle } from 'styled-components';
-import CreateForm from '../pages/CreateForm';
-import TodoTemplate from './TodoTemplate';
-import TodoTopMenu from './TodoTopMenu';
-import AddButton from './AddButton';
+import CreateForm from './pages/CreateForm';
+import TodoTemplate from './components/TodoTemplate';
+import TodoTopMenu from './components/TodoTopMenu';
+import AddButton from './components/AddButton';
 
 export const CREATE_TODO = 'CREATE_TODO';
 export const CLOSE_CREATE_TODO = 'CLOSE_CREATE_TODO';
@@ -20,51 +13,38 @@ export const CLICK_ADD_BUTTON = 'CLICK_ADD_BUTTON';
 const reducer = (state, action) => {
   switch (action.type) {
     case CREATE_TODO:
-      const newTodos = [...state.data, action.todo];
-      return {
-        ...state,
-        newTodos,
-      };
-    case CLOSE_CREATE_TODO:
-      return {
-        ...state,
-        showCreateTodo: false,
-      };
-    case CLICK_ADD_BUTTON:
-      return {
-        ...state,
-        showCreateTodo: true,
-      };
+      return state.concat(action.todo);
     default:
       return;
   }
 };
 
-const initialState = {
-  showCreateTodo: true,
-  data: [
-    {
-      id: 1,
-      task: '밥 먹기',
-      memo: '메모',
-    },
-    {
-      id: 2,
-      task: '게임하기',
-      memo: '메모',
-    },
-    {
-      id: 3,
-      task: '포스트 발행하기',
-      memo: '메모',
-    },
-  ],
-};
+const initialState = [
+  {
+    id: 1,
+    task: '밥 먹기',
+    memo: '메모',
+  },
+  {
+    id: 2,
+    task: '게임하기',
+    memo: '메모',
+  },
+  {
+    id: 3,
+    task: '포스트 발행하기',
+    memo: '메모',
+  },
+];
 
 function App() {
   const id = useRef(4); // 투두 아이디 번호
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { showCreateTodo, data } = state;
+  const [showCreateTodo, setShowCreateTodo] = useState(false);
+
+  const toggleShowCreateTodo = useCallback(() => {
+    setShowCreateTodo(!showCreateTodo);
+  }, [showCreateTodo]);
 
   return (
     <>
@@ -72,11 +52,19 @@ function App() {
       <TodoTemplate>
         <TodoTopMenu />
         {showCreateTodo ? (
-          <CreateForm id={id} dispatch={dispatch} />
+          <CreateForm
+            id={id}
+            setShowCreateTodo={setShowCreateTodo}
+            showCreateTodo={showCreateTodo}
+            dispatch={dispatch}
+          />
         ) : (
-          <TodoMain todos={data} />
+          <TodoMain todos={state} />
         )}
-        <AddButton dispatch={dispatch} showCreateTodo={showCreateTodo} />
+        <AddButton
+          showCreateTodo={showCreateTodo}
+          toggleShowCreateTodo={toggleShowCreateTodo}
+        />
       </TodoTemplate>
     </>
   );

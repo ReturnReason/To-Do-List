@@ -4,25 +4,26 @@ import styled from 'styled-components';
 const TodoList = ({ todos }) => {
   return (
     <>
-      <TodoLists>
-        {Array(todos.length)
-          .fill()
-          .map((todo, i) => {
-            return (
-              <MyTodoList key={`${i}번째 to do 아이템`}>
-                <Title>{todos[i].task}</Title>
-                <RecycleIcon src="recycle_bin.svg"></RecycleIcon>
-              </MyTodoList>
-            );
-          })}
-      </TodoLists>
+      <TodoListContainer>
+        {todos &&
+          Array(todos.length)
+            .fill()
+            .map((todo, i, arr) => {
+              return (
+                <MyTodoList key={`${i}번째 to do 아이템`}>
+                  <Title>{todos[i].task}</Title>
+                  <RecycleIcon src="recycle_bin.svg"></RecycleIcon>
+                </MyTodoList>
+              );
+            })}
+      </TodoListContainer>
     </>
   );
 };
 
 export default TodoList;
 
-const TodoLists = styled.div`
+const TodoListContainer = styled.div`
   padding-top: 25px;
   height: 500px;
   width: 100%;

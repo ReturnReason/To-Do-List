@@ -1,10 +1,8 @@
 import TodoList from './TodoList';
-import AddButton from './AddButton';
 import styled from 'styled-components';
 
 /* 메인 페이지 */
 const TodoMain = ({ todos }) => {
-  console.log({ todos });
   return (
     <>
       <ListContainer>
