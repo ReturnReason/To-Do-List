@@ -41,7 +41,6 @@ const reducer = (state, action) => {
 };
 
 const initialState = {
-  showCreateTodo: true,
   data: [
     {
       id: 1,
@@ -64,7 +63,8 @@ const initialState = {
 function App() {
   const id = useRef(4); // 투두 아이디 번호
   const [state, dispatch] = useReducer(reducer, initialState);
-  const { showCreateTodo, data } = state;
+  const [showCreateTodo, setShowCreateTodo] = useState(false);
+  const { data } = state || {};
 
   return (
     <>
@@ -76,7 +76,10 @@ function App() {
         ) : (
           <TodoMain todos={data} />
         )}
-        <AddButton dispatch={dispatch} showCreateTodo={showCreateTodo} />
+        <AddButton
+          showCreateTodo={showCreateTodo}
+          setShowCreateTodo={setShowCreateTodo}
+        />
       </TodoTemplate>
     </>
   );

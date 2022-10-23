@@ -2,17 +2,14 @@ import styled, { css } from 'styled-components';
 import plusIcon from '../assets/plus.svg';
 import CLICK_ADD_BUTTON from './App';
 
-const AddButton = ({ showCreateTodo, dispatch }) => {
-  const onClickAddButton = () => {
-    dispatch({
-      type: CLICK_ADD_BUTTON,
-    });
-  };
-
-  console.log('test', showCreateTodo);
-
+const AddButton = ({ showCreateTodo, setShowCreateTodo }) => {
   return (
-    <AddBtn onClick={onClickAddButton} showCreateTodo={showCreateTodo}>
+    <AddBtn
+      showCreateTodo={showCreateTodo}
+      onClick={() => {
+        setShowCreateTodo(!showCreateTodo);
+      }}
+    >
       <PlusIcon className="plus-img"></PlusIcon>
     </AddBtn>
   );
