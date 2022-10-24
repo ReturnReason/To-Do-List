@@ -26,6 +26,7 @@ const CreateForm = ({ dispatch, setShowCreateTodo, showCreateTodo }) => {
 
     setUserTaskInput('');
     setUserMemoInput('');
+
     onClose();
   };
 
