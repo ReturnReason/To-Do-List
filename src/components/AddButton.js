@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import plusIcon from '../assets/plus.svg';
 
+<<<<<<< HEAD
 const AddButton = ({ toggleShowCreateTodo, showCreateTodo }) => {
   const onClickCreateTodo = useCallback(() => {
     toggleShowCreateTodo();
@@ -9,6 +10,16 @@ const AddButton = ({ toggleShowCreateTodo, showCreateTodo }) => {
 
   return (
     <AddBtn showCreateTodo={showCreateTodo} onClick={onClickCreateTodo}>
+=======
+const AddButton = ({ showCreateTodo, setShowCreateTodo }) => {
+  return (
+    <AddBtn
+      showCreateTodo={showCreateTodo}
+      onClick={() => {
+        setShowCreateTodo(!showCreateTodo);
+      }}
+    >
+>>>>>>> b557bc3e91a8b56736103696bf418805d57b25fa
       <PlusIcon className="plus-img"></PlusIcon>
     </AddBtn>
   );
