@@ -9,11 +9,15 @@ import AddButton from './components/AddButton';
 export const CREATE_TODO = 'CREATE_TODO';
 export const CLOSE_CREATE_TODO = 'CLOSE_CREATE_TODO';
 export const CLICK_ADD_BUTTON = 'CLICK_ADD_BUTTON';
+export const DELETE_TODO = 'DELETE_TODO';
 
 const reducer = (state, action) => {
   switch (action.type) {
     case CREATE_TODO:
       return state.concat(action.todo);
+    case DELETE_TODO:
+      alert('아이템 삭제');
+      return [];
     default:
       return;
   }
@@ -59,7 +63,7 @@ function App() {
             dispatch={dispatch}
           />
         ) : (
-          <TodoMain todos={state} />
+          <TodoMain dispatch={dispatch} todos={state} />
         )}
         <AddButton
           showCreateTodo={showCreateTodo}

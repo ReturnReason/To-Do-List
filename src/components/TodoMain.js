@@ -2,11 +2,11 @@ import TodoList from './TodoList';
 import styled from 'styled-components';
 
 /* 메인 페이지 */
-const TodoMain = ({ todos }) => {
+const TodoMain = ({ todos, dispatch }) => {
   return (
     <>
       <ListContainer>
-        <TodoList todos={todos} />
+        <TodoList dispatch={dispatch} todos={todos} />
       </ListContainer>
     </>
   );

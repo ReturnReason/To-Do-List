@@ -41,11 +41,12 @@ const CreateForm = ({ dispatch, setShowCreateTodo, showCreateTodo }) => {
           <h2>TASK</h2>
           <Input
             required
-            placeholder="할 일을 입력하세요."
+            placeholder="할 일을 입력하세요. (20자 이내)"
             className="input"
             name="title"
             value={userTaskInput}
             onChange={writeTask}
+            maxLength="20"
           />
           <h2>MEMO</h2>
           <InputMemo

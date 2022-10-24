@@ -1,7 +1,16 @@
 import styled from 'styled-components';
-/* +버튼 누르기 전에 보일 화면 */
+import { DELETE_TODO } from '../App';
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, dispatch }) => {
+  const deleteTodo = (todo) => () => {
+    console.log(todo);
+
+    dispatch({
+      type: DELETE_TODO,
+      data: todo,
+    });
+  };
+
   return (
     <>
       <TodoListContainer>
@@ -10,10 +19,16 @@ const TodoList = ({ todos }) => {
             .fill()
             .map((todo, i, arr) => {
               return (
-                <MyTodoList key={`${i}번째 to do 아이템`}>
+                <TodoItem key={`${i}번째 to do 아이템`}>
                   <Title>{todos[i].task}</Title>
-                  <RecycleIcon src="recycle_bin.svg"></RecycleIcon>
-                </MyTodoList>
+                  <DeleteButtonContainer
+                    onClick={deleteTodo(todo)}
+                    role="button"
+                    className="deleteBtn"
+                  >
+                    <RecycleIcon src="recycle_bin.svg"></RecycleIcon>
+                  </DeleteButtonContainer>
+                </TodoItem>
               );
             })}
       </TodoListContainer>
@@ -31,29 +46,31 @@ const TodoListContainer = styled.div`
 `;
 
 const RecycleIcon = styled.img`
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin-right: 25px;
-  margin-top: 5px;
-  width: 25px;
+  width: 23px;
   cursor: pointer;
   opacity: 0;
   transition: all 0.2s;
+  margin-top: 2px;
+  margin-right: 10px;
 `;
 
-const MyTodoList = styled.div`
+const DeleteButtonContainer = styled.div`
+  position: relative;
+`;
+
+const TodoItem = styled.div`
   margin: 0 auto;
   position: relative;
   border-radius: 100px;
   border: 4px solid #94a8ff65;
   width: 480px;
   height: 55px;
-  padding-top: 13px;
   padding-left: 25px;
   padding-right: 25px;
   overflow: hidden;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   box-shadow: 2px 5px 10px #b5c3ff3b;
   margin-bottom: 20px;
   cursor: pointer;
@@ -75,4 +92,6 @@ const Title = styled.h2`
   color: #94a7ff;
   font-family: 'GmarketSansMedium';
   font-weight: normal;
+  padding-top: 3px;
+  margin-left: 10px;
 `;
