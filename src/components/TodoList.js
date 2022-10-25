@@ -3,8 +3,6 @@ import { DELETE_TODO } from '../App';
 
 const TodoList = ({ todos, dispatch }) => {
   const deleteTodo = (todo) => () => {
-    console.log(todo);
-
     dispatch({
       type: DELETE_TODO,
       data: todo,
@@ -22,7 +20,7 @@ const TodoList = ({ todos, dispatch }) => {
                 <TodoItem key={`${i}번째 to do 아이템`}>
                   <Title>{todos[i].task}</Title>
                   <DeleteButtonContainer
-                    onClick={deleteTodo(todo)}
+                    onClick={deleteTodo(todos[i])}
                     role="button"
                     className="deleteBtn"
                   >

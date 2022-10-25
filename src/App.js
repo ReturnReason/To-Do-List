@@ -16,8 +16,10 @@ const reducer = (state, action) => {
     case CREATE_TODO:
       return state.concat(action.todo);
     case DELETE_TODO:
-      alert('아이템 삭제');
-      return [];
+      const todos = state.filter((todo) => {
+        return todo.id !== action.data.id;
+      });
+      return [...todos];
     default:
       return;
   }
@@ -26,17 +28,17 @@ const reducer = (state, action) => {
 const initialState = [
   {
     id: 1,
-    task: '밥 먹기',
+    task: '알고리즘 풀어요',
     memo: '메모',
   },
   {
     id: 2,
-    task: '게임하기',
+    task: '자나깨나 코딩',
     memo: '메모',
   },
   {
     id: 3,
-    task: '포스트 발행하기',
+    task: '올때 메로나 💙',
     memo: '메모',
   },
 ];
