@@ -106,6 +106,7 @@ const GlobalStyle = createGlobalStyle`
     background: linear-gradient(#f2daff, 25%, #b4c4ff77, 70%, #a9c0ff00);
     width: 100%;
     height: 100vh;
+    color : #94a7ff;
   }
 
 `;

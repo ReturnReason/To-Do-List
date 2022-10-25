@@ -1,7 +1,12 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { DELETE_TODO } from '../App';
+import Detailtodo from './DetailTodo';
 
 const TodoList = ({ todos, dispatch }) => {
+  const [showDetailTodo, setShowDetailTodo] = useState(false);
+  const [selectedTodoId, setselectedTodoId] = useState('');
+
   const deleteTodo = (todo) => () => {
     dispatch({
       type: DELETE_TODO,
@@ -9,26 +14,40 @@ const TodoList = ({ todos, dispatch }) => {
     });
   };
 
+  const openDetailTodo = (todo) => (e) => {
+    if (e.target.tagName === 'IMG') return;
+    setShowDetailTodo(true);
+    setselectedTodoId(todo.id);
+  };
+
   return (
     <>
       <TodoListContainer>
         {todos &&
+          !showDetailTodo &&
           Array(todos.length)
             .fill()
             .map((todo, i, arr) => {
               return (
-                <TodoItem key={`${i}번째 to do 아이템`}>
+                <TodoItem
+                  onClick={openDetailTodo(todos[i])}
+                  key={`${i}번째 to do 아이템`}
+                >
                   <Title>{todos[i].task}</Title>
                   <DeleteButtonContainer
                     onClick={deleteTodo(todos[i])}
                     role="button"
-                    className="deleteBtn"
+                    dataName="delete"
                   >
                     <RecycleIcon src="recycle_bin.svg"></RecycleIcon>
                   </DeleteButtonContainer>
                 </TodoItem>
               );
             })}
+
+        {showDetailTodo && (
+          <Detailtodo todos={todos} selectedTodoId={selectedTodoId} />
+        )}
       </TodoListContainer>
     </>
   );
