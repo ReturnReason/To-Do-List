@@ -6,6 +6,7 @@ import TodoTemplate from './components/TodoTemplate';
 import TodoTopMenu from './components/TodoTopMenu';
 import AddButton from './components/AddButton';
 
+// 다 완성되면 리듀서 파일 분리하기
 export const CREATE_TODO = 'CREATE_TODO';
 export const CLOSE_CREATE_TODO = 'CLOSE_CREATE_TODO';
 export const CLICK_ADD_BUTTON = 'CLICK_ADD_BUTTON';
@@ -17,6 +18,7 @@ const reducer = (state, action) => {
       return state.concat(action.todo);
     case DELETE_TODO:
       const todos = state.filter((todo) => {
+        console.log(todo.id);
         return todo.id !== action.data.id;
       });
       return [...todos];
@@ -44,7 +46,7 @@ const initialState = [
 ];
 
 function App() {
-  const id = useRef(4); // 투두 아이디 번호
+  const todoId = useRef(4); // 투두 아이디 번호
   const [state, dispatch] = useReducer(reducer, initialState);
   const [showCreateTodo, setShowCreateTodo] = useState(false);
 
@@ -59,7 +61,7 @@ function App() {
         <TodoTopMenu />
         {showCreateTodo ? (
           <CreateForm
-            id={id}
+            todoId={todoId}
             setShowCreateTodo={setShowCreateTodo}
             showCreateTodo={showCreateTodo}
             dispatch={dispatch}

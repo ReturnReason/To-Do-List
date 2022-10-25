@@ -1,8 +1,13 @@
-import React, { useState, memo } from 'react';
+import React, { useState, memo, useRef } from 'react';
 import styled, { css } from 'styled-components';
 import { CREATE_TODO, CLOSE_CREATE_TODO } from '../App';
 
-const CreateForm = ({ dispatch, setShowCreateTodo, showCreateTodo }) => {
+const CreateForm = ({
+  todoId,
+  dispatch,
+  setShowCreateTodo,
+  showCreateTodo,
+}) => {
   const [userTaskInput, setUserTaskInput] = useState('');
   const [userMemoInput, setUserMemoInput] = useState('');
 
@@ -19,10 +24,13 @@ const CreateForm = ({ dispatch, setShowCreateTodo, showCreateTodo }) => {
     dispatch({
       type: CREATE_TODO,
       todo: {
+        id: todoId.current,
         task: userTaskInput,
         memo: userMemoInput,
       },
     });
+
+    todoId.current += 1;
 
     setUserTaskInput('');
     setUserMemoInput('');
