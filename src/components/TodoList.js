@@ -8,10 +8,13 @@ const TodoList = ({ todos, dispatch }) => {
   const [selectedTodoId, setselectedTodoId] = useState('');
 
   const deleteTodo = (todo) => () => {
-    dispatch({
-      type: DELETE_TODO,
-      data: todo,
-    });
+    const result = window.confirm('정말 삭제 하실건가요?');
+    if (result) {
+      dispatch({
+        type: DELETE_TODO,
+        data: todo,
+      });
+    }
   };
 
   const openDetailTodo = (todo) => (e) => {
