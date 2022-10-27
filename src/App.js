@@ -11,6 +11,7 @@ export const CREATE_TODO = 'CREATE_TODO';
 export const CLOSE_CREATE_TODO = 'CLOSE_CREATE_TODO';
 export const CLICK_ADD_BUTTON = 'CLICK_ADD_BUTTON';
 export const DELETE_TODO = 'DELETE_TODO';
+export const GO_HOME = 'GO_HOME';
 
 const reducer = (state, action) => {
   switch (action.type) {

@@ -46,7 +46,11 @@ const TodoList = ({ todos, dispatch }) => {
             })}
 
         {showDetailTodo && (
-          <Detailtodo todos={todos} selectedTodoId={selectedTodoId} />
+          <Detailtodo
+            setShowDetailTodo={setShowDetailTodo}
+            todos={todos}
+            selectedTodoId={selectedTodoId}
+          />
         )}
       </TodoListContainer>
     </>

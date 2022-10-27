@@ -1,9 +1,15 @@
+import { type } from '@testing-library/user-event/dist/type';
 import styled, { css } from 'styled-components';
+import { DELETE_TODO } from '../App';
 
-function Detailtodo({ todos, selectedTodoId }) {
+function Detailtodo({ todos, selectedTodoId, setShowDetailTodo }) {
   const currentTodo = todos.find((todo) => {
     return todo.id === selectedTodoId;
   });
+
+  const onCancle = () => {
+    setShowDetailTodo(false);
+  };
 
   return (
     <TodoDetailContainer>
@@ -11,7 +17,7 @@ function Detailtodo({ todos, selectedTodoId }) {
       <DetailMemoContainer>
         <DetailMemo>{currentTodo.memo}</DetailMemo>
       </DetailMemoContainer>
-      <CloseBtn>CANCLE</CloseBtn>
+      <CloseBtn onClick={onCancle}>CANCLE</CloseBtn>
     </TodoDetailContainer>
   );
 }
