@@ -1,6 +1,6 @@
-import React, { useState, memo, useRef } from 'react';
+import React, { useState, memo } from 'react';
 import styled, { css } from 'styled-components';
-import { CREATE_TODO, CLOSE_CREATE_TODO } from '../App';
+import { CREATE_TODO } from '../App';
 
 const CreateForm = ({
   todoId,

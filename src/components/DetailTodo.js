@@ -1,6 +1,4 @@
-import { type } from '@testing-library/user-event/dist/type';
 import styled, { css } from 'styled-components';
-import { DELETE_TODO } from '../App';
 
 function Detailtodo({ todos, selectedTodoId, setShowDetailTodo }) {
   const currentTodo = todos.find((todo) => {
