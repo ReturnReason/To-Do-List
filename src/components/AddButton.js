@@ -9,7 +9,7 @@ const AddButton = ({ toggleShowCreateTodo, showCreateTodo }) => {
 
   return (
     <AddBtn showCreateTodo={showCreateTodo} onClick={onClickCreateTodo}>
-      <PlusIcon className="plus-img"></PlusIcon>
+      <PlusIcon className='plus-img'></PlusIcon>
     </AddBtn>
   );
 };
@@ -38,8 +38,8 @@ const AddBtn = styled.div`
     background: #b29ff3;
   }
 
-  ${(props) =>
-    props.showCreateTodo &&
+  ${({ showCreateTodo }) =>
+    showCreateTodo &&
     css`
       transform: rotate(45deg);
       background: #b29ff3;

@@ -45,23 +45,23 @@ const CreateForm = ({
   return (
     <>
       <TodoCreateContainer>
-        <form method="" onSubmit={onSubmit}>
+        <form method='' onSubmit={onSubmit}>
           <h2>TASK</h2>
           <Input
             required
-            placeholder="할 일을 입력하세요. (20자 이내)"
-            className="input"
-            name="title"
+            placeholder='할 일을 입력하세요. (20자 이내)'
+            className='input'
+            name='title'
             value={userTaskInput}
             onChange={writeTask}
-            maxLength="20"
+            maxLength='20'
           />
           <h2>MEMO</h2>
           <InputMemo
             required
-            placeholder="메모를 입력하세요."
-            className="input memo"
-            name="memo"
+            placeholder='메모를 입력하세요.'
+            className='input memo'
+            name='memo'
             value={userMemoInput}
             onChange={writeMemo}
           />
@@ -139,7 +139,7 @@ const AddButton = styled.button`
   cursor: pointer;
 
   &:hover {
-    background: ${(props) => (props.add ? '#a9b9ff' : 'none')};
+    background: ${({ add }) => (add ? '#a9b9ff' : 'none')};
   }
 `;
 

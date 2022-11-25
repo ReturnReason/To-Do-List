@@ -96,8 +96,8 @@ const CloseBtn = styled.button`
     background: #b29ff3;
   }
 
-  ${(props) =>
-    props.showCreateTodo &&
+  ${({ showCreateTodo }) =>
+    showCreateTodo &&
     css`
       transform: rotate(45deg);
       background: #b29ff3;
