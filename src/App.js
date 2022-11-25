@@ -1,7 +1,7 @@
 import React, { useState, useRef, useCallback, useReducer } from 'react';
 import TodoMain from './components/TodoMain';
 import { createGlobalStyle } from 'styled-components';
-import CreateForm from './pages/CreateForm';
+import CreateForm from './components/CreateForm';
 import TodoTemplate from './components/TodoTemplate';
 import TodoTopMenu from './components/TodoTopMenu';
 import AddButton from './components/AddButton';
